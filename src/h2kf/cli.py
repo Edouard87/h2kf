@@ -3,10 +3,8 @@ A formatting tool for photos for submission to h2k.
 '''
 import argparse
 import logging
-from datetime import datetime
-from inspect import signature
 
-from src.h2kf.image import process_images
+from h2kf.image import process_images
 
 import sys
 
