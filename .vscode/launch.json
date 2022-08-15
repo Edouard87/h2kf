@@ -12,12 +12,15 @@
             "args": ["tests\\test_convert.py"]
         },
         {
-            "name": "Python: Current File",
+            "name": "Python: Debug CLI",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\",
-            "console": "integratedTerminal",
-            "justMyCode": true
+            "program": "${workspaceFolder}\\src\\h2kf\\cli.py",
+            "args": ["--version"],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}\\src"
+            },
+            "justMyCode": false
         }
     ]
 }

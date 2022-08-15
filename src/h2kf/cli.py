@@ -5,6 +5,7 @@ import argparse
 import logging
 
 from h2kf.image import process_images
+from h2kf.constants import __version__
 
 import sys
 
@@ -12,6 +13,10 @@ def main():
     p = argparse.ArgumentParser(
         description=__doc__,
         prog = "h2kf.py")
+    p.add_argument('--version',
+        action  = 'version',
+        version = __version__,
+        help    = 'Display the program version and exit.')
     p.add_argument('--verbose',
         '-v',
         action = 'count',
@@ -44,6 +49,10 @@ def main():
         help    = '''
             The format images should use in output. The default is `JPG`. Can be uppercase or lowercase.
         ''')
+    image_p.add_argument('--output-resolution',
+        nargs   = 2,
+        default = None,
+        type    = int)
     date_g = image_p.add_mutually_exclusive_group(
         required = True)
     date_g.add_argument('--date', help='''

@@ -1,4 +1,5 @@
 from setuptools import setup
+from src.h2kf.constants import __version__
 
 setup(
     name             = "h2kf",
@@ -13,5 +14,5 @@ setup(
     entry_points     = {
         "console_scripts": ['h2kf = h2kf.cli:main']
     },
-    version          = "0.1.1"
+    version          = __version__
 )

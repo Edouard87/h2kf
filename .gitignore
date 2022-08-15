@@ -5,3 +5,4 @@ __pycache__
 src/h2k_format.egg-info/
 h2kf.egg-info/
 .venv
+test_images
