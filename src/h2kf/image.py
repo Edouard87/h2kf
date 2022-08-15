@@ -22,14 +22,15 @@ def process_images(
     src_directory: str, 
     out_directory: str,
     file_id: str,
-    date: Union[str, None]   = None,
-    generate_timestamp: bool = True,
-    font: str                = "Arial",
-    output_format: str       = "JPG",
-    offset: int              = 20,
-    stamp_size: float        = 0.05,
-    timestamp_color          = "#FFFFFF",
-    timestamp_border_color   = "#000000") -> None:
+    date: Union[str, None]             = None,
+    generate_timestamp: bool           = True,
+    font: str                          = "Arial",
+    output_format: str                 = "JPG",
+    offset: int                        = 20,
+    stamp_size: float                  = 0.05,
+    timestamp_color                    = "#FFFFFF",
+    timestamp_border_color             = "#000000",
+    output_resolution: tuple[int, int] = (25, 25)) -> None:
     '''
     Process the provided images, appling the transformations.
     Will automatically format the `datetime` with the ISO format suing `strftime`.
@@ -51,7 +52,7 @@ def process_images(
     
     if not wver.fonts(font):
         raise ValueError(f"Font {font} not supported by system.")
-    if not wver.formats(output_format):
+    if not wver.formats(output_format.upper()):
         raise ValueError(f"Image output format {output_format} not supported by system.")
     if not date and not generate_timestamp:
         raise ValueError("Must either provide `date` or `timestamp`.")
@@ -72,7 +73,7 @@ def process_images(
                         logger.debug(f"Generated timestamp {date} for image {file.name}")
                     logger.info(f"Converting image {file.name} of size {original.width}x{original.height}")
                     converted: Image = original.convert(output_format)
-                    converted.resample(25,25)
+                    converted.resample(*output_resolution)
                     with Drawing() as draw:
                         draw.font = font
                         draw.fill_color = Color(timestamp_color)
